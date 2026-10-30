@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://d2u0uluohvuhj"]
+
+[ext_resource type="Script" uid="uid://eacgysjrqphe" path="res://exit_zone.gd" id="1_34v03"]
+[ext_resource type="Script" uid="uid://ccncavgr162w4" path="res://casino_look.gd" id="1_j55sx"]
+[ext_resource type="Script" uid="uid://cn4yejm1syejl" path="res://house_lights.gd" id="1_upjqo"]
+[ext_resource type="Script" uid="uid://tbsm3fjn1cks" path="res://table_seat.gd" id="2_ankvb"]
+[ext_resource type="Script" uid="uid://brislv54qtrjh" path="res://exit_door.gd" id="2_j55sx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(4, 2, 3)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g4v7s"]
+radius = 2.5
+
+[node name="Casino" type="Node3D" unique_id=1482775403]
+script = ExtResource("1_j55sx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1376901380]
+transform = Transform3D(1, 0, 0, 0, 0.64278764, 0.76604444, 0, -0.76604444, 0.64278764, 0, 6.9871206, 4.5584855)
+script = ExtResource("1_upjqo")
+
+[node name="floor" type="CSGBox3D" parent="." unique_id=510366711]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+use_collision = true
+size = Vector3(20, 0.2, 20)
+
+[node name="wall1" type="CSGBox3D" parent="." unique_id=1425313810]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10)
+use_collision = true
+size = Vector3(20, 4, 0.5)
+
+[node name="wall2" type="CSGBox3D" parent="." unique_id=634513803]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -10)
+use_collision = true
+size = Vector3(20, 4, 0.5)
+
+[node name="wall3" type="CSGBox3D" parent="." unique_id=428107332]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, 0)
+use_collision = true
+size = Vector3(0.5, 4, 20)
+
+[node name="wall4" type="CSGBox3D" parent="." unique_id=634369793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, 0)
+use_collision = true
+size = Vector3(0.5, 4, 20)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=2079232202]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
+use_collision = true
+radius = 1.2
+height = 1.0
+
+[node name="ExitDoor" type="CSGBox3D" parent="." unique_id=1764927657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 9.7)
+use_collision = true
+size = Vector3(2, 3, 0.2)
+script = ExtResource("2_j55sx")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1040904868]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8.3)
+script = ExtResource("1_34v03")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=210756101]
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="TableSeat" type="Area3D" parent="." unique_id=958195870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+script = ExtResource("2_ankvb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TableSeat" unique_id=957743617]
+shape = SubResource("CylinderShape3D_g4v7s")
